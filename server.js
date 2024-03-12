@@ -1,19 +1,19 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-import { app } from "./src/app.js";
-import { mongodbLocalUri, serverPort } from "./src/config/secret.js";
+import { app } from './src/app.js';
+import { mongodbAtlasUri, serverPort } from './src/config/secret.js';
 
 // database connection
 mongoose
-  .connect(mongodbLocalUri)
+  .connect(mongodbAtlasUri)
   .then(() => {
-    console.log("Db is connected");
-    mongoose.connection.on("error", (error) => {
-      console.log("Db connection error", error);
+    console.log('Db is connected');
+    mongoose.connection.on('error', (error) => {
+      console.log('Db connection error', error);
     });
   })
   .catch((error) => {
-    console.log("Db connection failed", error);
+    console.log('Db connection failed', error);
     process.exit(1);
   });
 

@@ -28,14 +28,7 @@ const getAllProducts = async (req, res, next) => {
     // BUILD QUERY
     // 1A) Filtering
     const queryObj = { ...req.query };
-    const excludeFields = [
-      'page',
-      'sort',
-      'limit',
-      'fields',
-      'search',
-      'category',
-    ];
+    const excludeFields = ['page', 'sort', 'limit', 'fields', 'search'];
     excludeFields.forEach((el) => delete queryObj[el]);
 
     // 1B) Advanced filtering
@@ -51,21 +44,14 @@ const getAllProducts = async (req, res, next) => {
 
       const queryBySearch = {
         $or: [
-          { name: { $regex: searchRegexp } },
-          { email: { $regex: searchRegexp } },
-          { phone: { $regex: searchRegexp } },
-          { role: { $regex: searchRegexp } },
+          { title: { $regex: searchRegexp } },
+          { categories: { $regex: searchRegexp } },
         ],
       };
       query = query.find(queryBySearch);
     }
 
-    // 3) category
-    if (req.query.category) {
-      query = query.find({ categories: { $in: [req.query.category] } });
-    }
-
-    // 4) Sorting
+    // 3) Sorting
     if (req.query.sort) {
       const sortedBy = req.query.sort.split(',').join(' ');
       query = query.sort(sortedBy);
@@ -73,7 +59,7 @@ const getAllProducts = async (req, res, next) => {
       query = query.sort('-createdAt');
     }
 
-    // 5) Field limiting
+    // 4) Field limiting
     if (req.query.fields) {
       const fields = req.query.fields.split(',').join(' ');
       query = query.select(fields);
@@ -81,7 +67,7 @@ const getAllProducts = async (req, res, next) => {
       query = query.select('-__v -updatedAt');
     }
 
-    // 6) pagination
+    // 5) pagination
     const page = req.query.page * 1 || 1;
     const limit = req.query.limit * 1 || 100;
     const skip = (page - 1) * limit;
