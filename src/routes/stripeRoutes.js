@@ -4,7 +4,7 @@ import * as stripePayment from '../controllers/stripeController.js';
 
 const router = express.Router();
 
-router.post('/createPayment', stripePayment.createPayment);
+router.post('/checkout', stripePayment.checkout);
 
 export { router as stripeRouter };
 

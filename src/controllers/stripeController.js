@@ -4,7 +4,7 @@ import { stripeSecretKey } from '../config/secret.js';
 // TODO: have to pass my stripe key
 const stripe = new Stripe(stripeSecretKey);
 
-const createPayment = async (req, res, next) => {
+const checkout = async (req, res, next) => {
   stripe.charges.create(
     {
       source: req.body.tokenId,
@@ -24,4 +24,4 @@ const createPayment = async (req, res, next) => {
   );
 };
 
-export { createPayment };
+export { checkout };
