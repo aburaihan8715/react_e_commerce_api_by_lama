@@ -4,6 +4,13 @@ import * as orderController from '../controllers/orderController.js';
 
 const router = express.Router();
 
+// ALIAS ROUTES
+router.get(
+  '/new-5',
+  orderController.aliasNewOrders,
+  orderController.getAllOrders
+);
+
 router.get('/myOrders', orderController.getMyOrders);
 router.get('/income', orderController.getMonthlyIncome);
 

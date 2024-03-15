@@ -129,25 +129,35 @@ const getAllUsers = async (req, res, next) => {
 
 // GET USERS STATS
 const getUserStats = async (req, res, next) => {
-  const date = new Date();
-  const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
+  const year = req.params.year * 1;
 
   try {
     const data = await User.aggregate([
-      // NOTE: if need last yser use $lte:lastYear
-      { $match: { createdAt: { $gte: lastYear } } },
       {
-        $project: {
-          month: { $month: '$createdAt' },
+        $match: {
+          createdAt: {
+            $gte: new Date(`${year}-01-01`),
+            $lte: new Date(`${year}-12-31`),
+          },
         },
       },
       {
         $group: {
-          _id: '$month',
-          total: { $sum: 1 },
+          _id: { $month: '$createdAt' },
+          numUsers: { $sum: 1 },
         },
       },
+      {
+        $addFields: { month: '$_id' },
+      },
+      {
+        $project: { _id: 0 },
+      },
+      {
+        $sort: { month: 1 },
+      },
     ]);
+
     res.status(200).json({
       status: 'success',
       data: data,

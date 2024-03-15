@@ -1,5 +1,13 @@
 import { Order } from '../models/orderModel.js';
 
+// ALIAS
+// NOTE: if query same make alias else make features
+const aliasNewOrders = async (req, res, next) => {
+  req.query.limit = '5';
+  req.query.sort = '-createdAt';
+  next();
+};
+
 // CREATE ORDER
 const createOrder = async (req, res, next) => {
   const newOrder = new Order(req.body);
@@ -15,7 +23,76 @@ const createOrder = async (req, res, next) => {
 };
 
 // GET ALL ORDERS
-const getAllOrders = async (req, res, next) => {};
+const getAllOrders = async (req, res, next) => {
+  try {
+    // BUILD QUERY
+    // 1A) Filtering
+    const queryObj = { ...req.query };
+    const excludeFields = ['page', 'sort', 'limit', 'fields', 'search'];
+    excludeFields.forEach((el) => delete queryObj[el]);
+
+    // 1B) Advanced filtering
+    let queryStr = JSON.stringify(queryObj);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+
+    let query = Order.find(JSON.parse(queryStr));
+
+    // 2) searching
+    if (req.query.search) {
+      const search = req.query.search || '';
+      const searchRegexp = new RegExp(`.*${search}.*`, 'i');
+
+      const queryBySearch = {
+        $or: [
+          { status: { $regex: searchRegexp } },
+          { email: { $regex: searchRegexp } },
+        ],
+      };
+      query = query.find(queryBySearch);
+    }
+
+    // 3) Sorting
+    if (req.query.sort) {
+      const sortedBy = req.query.sort.split(',').join(' ');
+      query = query.sort(sortedBy);
+    } else {
+      query = query.sort('-createdAt');
+    }
+
+    // 4) Field limiting
+    if (req.query.fields) {
+      const fields = req.query.fields.split(',').join(' ');
+      query = query.select(fields);
+    } else {
+      query = query.select('-__v -updatedAt');
+    }
+
+    // 5) pagination
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 100;
+    const skip = (page - 1) * limit;
+
+    query = query.skip(skip).limit(limit);
+
+    if (req.query.page) {
+      const numOrders = await User.countDocuments();
+      if (skip >= numOrders)
+        throw createError(404, 'This page does not exist!');
+    }
+
+    // EXECUTE QUERY
+    const orders = await query;
+
+    // SEND RESPONSE
+    res.status(200).json({
+      status: 'success',
+      results: orders.length,
+      data: orders,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 // GET A ORDER
 const getOrder = async (req, res, next) => {};
@@ -105,4 +182,5 @@ export {
   deleteOrder,
   getMyOrders,
   getMonthlyIncome,
+  aliasNewOrders,
 };

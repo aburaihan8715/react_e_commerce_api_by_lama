@@ -20,7 +20,7 @@ router.get(
   verifyAuth.verifyAuthorization('admin'),
   userController.getAllUsers
 );
-router.get('/stats', userController.getUserStats);
+router.get('/stats/:year', userController.getUserStats);
 router
   .route('/:id')
   .get(userController.getUser)
