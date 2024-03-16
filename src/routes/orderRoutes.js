@@ -12,7 +12,7 @@ router.get(
 );
 
 router.get('/myOrders', orderController.getMyOrders);
-router.get('/income', orderController.getMonthlyIncome);
+router.get('/incomeStats', orderController.getMonthlyIncomeStats);
 
 router
   .route('/')

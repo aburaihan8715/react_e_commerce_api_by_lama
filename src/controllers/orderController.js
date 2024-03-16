@@ -143,25 +143,36 @@ const getMyOrders = async (req, res, next) => {
 };
 
 // GET MONTHLY INCOME
-const getMonthlyIncome = async (req, res, next) => {
-  const date = new Date();
-  const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
-  const prevMonth = new Date(date.setMonth(lastMonth.getMonth() - 1));
+const getMonthlyIncomeStats = async (req, res, next) => {
+  const year = new Date().getFullYear();
 
   try {
     const income = await Order.aggregate([
-      { $match: { createdAt: { $gte: prevMonth } } },
       {
-        $project: {
-          month: { $month: '$createdAt' },
-          sales: '$amount',
+        $match: {
+          createdAt: {
+            $gte: new Date(`${year}-01-01`),
+            $lte: new Date(`${year}-12-31`),
+          },
         },
       },
+
       {
         $group: {
-          _id: '$month',
-          total: { $sum: '$sales' },
+          _id: { $month: '$createdAt' },
+          salesAmount: { $sum: '$amount' },
+          costAmount: { $sum: '$costAmount' },
         },
+      },
+
+      {
+        $addFields: { month: '$_id' },
+      },
+      {
+        $project: { _id: 0 },
+      },
+      {
+        $sort: { month: 1 },
       },
     ]);
 
@@ -181,6 +192,6 @@ export {
   updateOrder,
   deleteOrder,
   getMyOrders,
-  getMonthlyIncome,
+  getMonthlyIncomeStats,
   aliasNewOrders,
 };

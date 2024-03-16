@@ -4,23 +4,11 @@
 // const prevMonth = new Date(date.setMonth(lastMonth.getMonth() - 1));
 // console.log(prevMonth);
 
-// const date = new Date();
-// const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
-// console.log(lastYear);
+// const year = new Date().getFullYear();
 
-const MONTHS = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Agu',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
-];
+// console.log(year);
 
-console.log(MONTHS[5]);
+// const x = 700;
+// const y = 500;
+// const percentage_difference = (x * 100) / y - 100;
+// console.log(percentage_difference);

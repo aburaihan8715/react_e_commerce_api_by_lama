@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import { Schema } from "mongoose";
+import mongoose from 'mongoose';
+import { Schema } from 'mongoose';
 
 const OrderSchema = new Schema(
   {
@@ -15,11 +15,13 @@ const OrderSchema = new Schema(
         },
       },
     ],
+    costAmount: { type: Number, required: true },
     amount: { type: Number, required: true },
     address: { type: Object, required: true },
-    status: { type: String, default: "pending" },
+    status: { type: String, default: 'pending' },
   },
   { timestamps: true }
 );
 
-export const Order = mongoose.models.Order || mongoose.model("Order", OrderSchema);
+export const Order =
+  mongoose.models.Order || mongoose.model('Order', OrderSchema);
