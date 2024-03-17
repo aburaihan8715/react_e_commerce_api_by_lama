@@ -1,6 +1,6 @@
 import express from 'express';
 
-import * as verifyAuth from '../middlewares/verifyAuth.js';
+// import * as verifyAuth from '../middlewares/verifyAuth.js';
 import * as userController from '../controllers/userController.js';
 import * as authController from '../controllers/authController.js';
 
@@ -14,12 +14,7 @@ router.post('/register', authController.register);
 router.post('/login', authController.login);
 
 // USER RELATED ROUTES
-router.get(
-  '/',
-  verifyAuth.verifyAuthentication,
-  verifyAuth.verifyAuthorization('admin'),
-  userController.getAllUsers
-);
+router.get('/', userController.getAllUsers);
 router.get('/stats/:year', userController.getUserStats);
 router
   .route('/:id')

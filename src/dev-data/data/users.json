@@ -1,0 +1,90 @@
+[
+  {
+    "_id": "65f1253af4cee87a267be077",
+    "username": "cabul",
+    "email": "cabul@gmail.com",
+    "password": "$2a$08$xOx6s18B4hBglsY/zILMaeL033giU29SYWWtiY2ZtsqlQH4BCw0Hm",
+    "role": "user",
+    "createdAt": "2024-03-11T13:26:30.692Z"
+  },
+  {
+    "_id": "65f12568f4cee87a267be07a",
+    "username": "fabul",
+    "email": "fabul@gmail.com",
+    "password": "$2a$08$xOx6s18B4hBglsY/zILMaeL033giU29SYWWtiY2ZtsqlQH4BCw0Hm",
+    "role": "user",
+    "createdAt": "2024-03-11T13:26:30.692Z"
+  },
+  {
+    "_id": "65f1257cf4cee87a267be07b",
+    "username": "gabul",
+    "email": "gabul@gmail.com",
+    "password": "$2a$08$xOx6s18B4hBglsY/zILMaeL033giU29SYWWtiY2ZtsqlQH4BCw0Hm",
+    "role": "user",
+    "createdAt": "2024-03-11T13:26:30.692Z"
+  },
+  {
+    "_id": "65f1259bf4cee87a267be07c",
+    "username": "raihan",
+    "email": "raihan@gmail.com",
+    "password": "$2a$08$xOx6s18B4hBglsY/zILMaeL033giU29SYWWtiY2ZtsqlQH4BCw0Hm",
+    "role": "admin",
+    "createdAt": "2024-03-11T13:26:30.692Z"
+  },
+  {
+    "_id": "65f284175eeaf9a53340b50c",
+    "username": "habul",
+    "email": "habul@gmail.com",
+    "password": "$2a$08$xOx6s18B4hBglsY/zILMaeL033giU29SYWWtiY2ZtsqlQH4BCw0Hm",
+    "role": "user",
+    "createdAt": "2024-03-11T13:26:30.692Z"
+  },
+  {
+    "_id": "65f284525eeaf9a53340b50e",
+    "username": "jabul",
+    "email": "jabul@gmail.com",
+    "password": "$2a$08$xOx6s18B4hBglsY/zILMaeL033giU29SYWWtiY2ZtsqlQH4BCw0Hm",
+    "role": "user",
+    "createdAt": "2024-03-11T13:26:30.692Z"
+  },
+  {
+    "_id": "65f12547f4cee87a267be078",
+    "username": "dabul",
+    "email": "dabul@gmail.com",
+    "password": "$2a$08$xOx6s18B4hBglsY/zILMaeL033giU29SYWWtiY2ZtsqlQH4BCw0Hm",
+    "role": "user",
+    "createdAt": "2024-02-11T13:26:30.692Z"
+  },
+  {
+    "_id": "65f12557f4cee87a267be079",
+    "username": "ebul",
+    "email": "ebul@gmail.com",
+    "password": "$2a$08$xOx6s18B4hBglsY/zILMaeL033giU29SYWWtiY2ZtsqlQH4BCw0Hm",
+    "role": "user",
+    "createdAt": "2024-02-11T13:26:30.692Z"
+  },
+  {
+    "_id": "65f284385eeaf9a53340b50d",
+    "username": "ibul",
+    "email": "ibul@gmail.com",
+    "password": "$2a$08$xOx6s18B4hBglsY/zILMaeL033giU29SYWWtiY2ZtsqlQH4BCw0Hm",
+    "role": "user",
+    "createdAt": "2024-02-11T13:26:30.692Z"
+  },
+  {
+    "_id": "65ef068659f3af6f3bbfb0c4",
+    "username": "abul",
+    "email": "abul@gmail.com",
+    "password": "$2a$08$xOx6s18B4hBglsY/zILMaeL033giU29SYWWtiY2ZtsqlQH4BCw0Hm",
+    "role": "user",
+    "createdAt": "2024-01-11T13:26:30.692Z"
+  },
+  {
+    "_id": "65f12528f4cee87a267be076",
+    "username": "babul",
+    "email": "babul@gmail.com",
+    "password": "$2a$08$xOx6s18B4hBglsY/zILMaeL033giU29SYWWtiY2ZtsqlQH4BCw0Hm",
+    "role": "user",
+    "createdAt": "2024-01-11T13:26:30.692Z"
+  }
+]

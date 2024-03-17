@@ -144,6 +144,7 @@ const getMyOrders = async (req, res, next) => {
 
 // GET MONTHLY INCOME
 const getMonthlyIncomeStats = async (req, res, next) => {
+  const productId = req.query.pid;
   const year = new Date().getFullYear();
 
   try {
@@ -154,6 +155,12 @@ const getMonthlyIncomeStats = async (req, res, next) => {
             $gte: new Date(`${year}-01-01`),
             $lte: new Date(`${year}-12-31`),
           },
+
+          // NOTE: This for single product and it is conditional query
+          // we must need ... spread operator as we have to use ()
+          ...(productId && {
+            products: { $elemMatch: { productId: productId } },
+          }),
         },
       },
 
