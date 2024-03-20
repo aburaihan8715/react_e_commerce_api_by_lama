@@ -5,7 +5,11 @@ const ProductSchema = new Schema(
   {
     title: { type: String, required: true, unique: true },
     desc: { type: String, required: true },
-    img: { type: String, required: true },
+    img: { type: String },
+    // img: {
+    //   type: Buffer,
+    //   contentType: String,
+    // },
     categories: { type: Array },
     size: { type: Array },
     color: { type: Array },
